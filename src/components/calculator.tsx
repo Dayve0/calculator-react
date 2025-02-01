@@ -5,8 +5,10 @@ import { useEffect, useState } from "react";
 // Components
 import { Button } from "@heroui/button";
 import { Textarea } from "@heroui/input";
+import { Tooltip } from "@heroui/tooltip";
 import CalculateIcon from '@mui/icons-material/Calculate';
 import HistoryIcon from '@mui/icons-material/History';
+import ModalInfo from "./modalInfo";
 import ThemeToggle from "./themeToggle";
 
 export default function Calculator() {
@@ -16,7 +18,13 @@ export default function Calculator() {
         result: string;
     };
 
-    const buttons = [
+    type IButton = {
+        value: string;
+        key: string;
+        type: string
+    }
+
+    const buttons: IButton[] = [
         { value: "AC", key: '}', type: "clear" },
         { value: "C", key: 'c', type: "clear" },
         { value: "DEL", key: 'Delete', type: "clear" },
@@ -36,7 +44,7 @@ export default function Calculator() {
         { value: "", key: '{', type: "operator" },
         { value: "0", key: '0', type: "number" },
         { value: ".", key: '.', type: "number" },
-        { value: "=", key: 'Enter', type: "calculate" },
+        { value: "=", key: '=', type: "calculate" },
     ];
 
     const [expression, setExpression] = useState<string>("");
@@ -44,7 +52,7 @@ export default function Calculator() {
     const [isOpen, setIsOpen] = useState<boolean>(false);
     const [history, setHistory] = useState<IHistory[]>([]);
 
-    function handleButtonPress(button: { value: string; key: string; type: string }) {
+    function handleButtonPress(button: IButton) {
 
         const lastIsOperator = Number.isNaN(Number(expression.slice(-1)));
         const isOperator = Number.isNaN(Number(button.value));
@@ -97,6 +105,13 @@ export default function Calculator() {
                 e.preventDefault()
                 return
             }
+            if (key === '?') {
+                const help = document.getElementById('help')
+
+                if (help) {
+                    help.click()
+                }
+            }
 
             const button = buttons.find((b) => b.key.toLowerCase() === key);
 
@@ -115,23 +130,25 @@ export default function Calculator() {
     }, [expression, isOpen]);
 
     return (
-        <div className="flex flex-col gap-2">
+        <div className="flex flex-col gap-2 text-foreground-900">
 
             {/* Switch Calculator/History && Switch theme */}
             <div className="flex justify-between items-center w-full">
-                <Button
-                    onPress={() => setIsOpen(!isOpen)}
-                    className="!w-[2rem] transition-all ease-in-out"
-                    radius="full"
-                    isIconOnly
-                    tabIndex={-1}
-                >
-                    {isOpen ? (
-                        <CalculateIcon />
-                    ) : (
-                        <HistoryIcon />
-                    )}
-                </Button>
+                <Tooltip content={isOpen ? 'Calculadora' : 'Histórico'} className="text-foreground-900">
+                    <Button
+                        onPress={() => setIsOpen(!isOpen)}
+                        className="!w-[2rem] transition-all ease-in-out"
+                        radius="full"
+                        isIconOnly
+                        tabIndex={-1}
+                    >
+                        {isOpen ? (
+                            <CalculateIcon />
+                        ) : (
+                            <HistoryIcon />
+                        )}
+                    </Button>
+                </Tooltip>
 
                 <ThemeToggle />
             </div>
@@ -154,7 +171,7 @@ export default function Calculator() {
                             value={expression}
                             disabled
                         />
-                        <div className="rounded-b-sm flex justify-end items-center py-1 px-2 font-bold bg-[#f2f2f3] dark:bg-[#2a2a2d] dark:text-white ">
+                        <div className="rounded-b-sm flex justify-end items-center py-1 px-2 font-bold bg-[#f2f2f3] dark:bg-[#2a2a2d]">
                             {calculation}
                         </div>
                     </div>
@@ -168,10 +185,10 @@ export default function Calculator() {
                                 key={button.value}
                                 type="button"
                                 className={`
-                                rounded-md min-w-11 h-11 col-span-1 
-                                font-medium text-lg 
-                                dark:text-slate-50 dark:bg-[#212121]
-                                bg-[#d9d9d9] text-black
+                                rounded-md min-w-11 h-11 
+                                font-medium text-lg col-span-1 
+                                bg-[#d9d9d9]
+                                dark:bg-[#212121]
                                 ${button.type === "clear" && "text-red-500 dark:text-red-500"} 
                                 ${button.type === "operator" && "text-blue-600 dark:text-blue-600"} 
                                 `}
@@ -188,12 +205,12 @@ export default function Calculator() {
                         w-[20rem] h-[30rem] p-3 flex flex-col gap-2 overflow-y-auto rounded-t-md
                         rounded-md border-[3px]
                         ${history.length == 0 ? 'justify-center items-center' : ' justify-start items-start'}
-                         bg-white text-black border-blue-500 
-                        dark:bg-black dark:text-white dark:border-purple-500
+                         bg-white  border-blue-500 
+                        dark:bg-black dark:border-purple-500
                         `}>
 
                         {history.length === 0 && (
-                            <p className="text-black dark:text-white">Nenhum cálculo realizado</p>
+                            <p>Nenhum cálculo realizado</p>
                         )}
 
                         {history.map((item, index) => (
@@ -214,6 +231,8 @@ export default function Calculator() {
                 </section>
 
             </div>
+
+            <ModalInfo />
 
         </div>
     );
