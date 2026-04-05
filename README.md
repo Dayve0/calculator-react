@@ -1,36 +1,97 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+<div align="center">
+  <h1>Calculator</h1>
+  
+  <p>
+    Uma aplicação de calculadora moderna, responsiva e de alta performance.
+  </p>
 
-## Getting Started
+  <p>
+    <img src="https://img.shields.io/badge/Next.js-15.1-black?style=for-the-badge&logo=next.js" alt="Next.js" />
+    <img src="https://img.shields.io/badge/React-19.0-blue?style=for-the-badge&logo=react" alt="React" />
+    <img src="https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript" />
+    <img src="https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white" alt="Tailwind CSS" />
+  </p>
+</div>
 
-First, run the development server:
+<br/>
 
-```bash
+## Sobre o Projeto
+
+Este projeto é uma calculadora desenvolvida com as mais recentes tecnologias do ecossistema front-end. O foco principal foi criar uma interface de utilizador (UI) limpa, com animações fluidas e uma estrutura de código escalável, utilizando o App Router do Next.js.
+
+## Funcionalidades
+
+- **Interface Moderna e Acessível:** Construída com componentes do **HeroUI** e arquitetura do **shadcn/ui**.
+- **Animações Fluidas:** Interações e transições de estado geridas pelo **Framer Motion**.
+- **Design Responsivo:** Totalmente adaptável a qualquer ecrã (Mobile, Tablet, Desktop) graças ao **Tailwind CSS**.
+- **Dark/Light Mode:** Suporte nativo a temas utilizando variáveis CSS e as configurações do shadcn.
+- **Métricas e Performance:** Integração com **Vercel Speed Insights** para monitorização em tempo real.
+
+## Tecnologias Utilizadas
+
+Abaixo está a lista das principais bibliotecas e *frameworks* que compõem este projeto:
+
+* [Next.js 15](https://nextjs.org/)
+* [React 19](https://react.dev/)
+* [TypeScript](https://www.typescriptlang.org/)
+* [Tailwind CSS](https://tailwindcss.com/)
+* [HeroUI](https://heroui.com/)
+* [shadcn/ui](https://ui.shadcn.com/)
+* [Framer Motion](https://www.framer.com/motion/)
+* [Lucide React](https://lucide.dev/) & [MUI Icons](https://mui.com/)
+
+## Instalação e Execução
+
+Para correr este projeto localmente na tua máquina, segue os passos abaixo.
+
+### Pré-requisitos
+* [Node.js](https://nodejs.org/en/) (versão 18+ recomendada)
+* `npm`, `yarn`, `pnpm` ou `bun`
+
+### Passos
+
+1. **Clonar o repositório:**
+   ```bash
+   git clone [https://github.com/o-teu-utilizador/calculator.git](https://github.com/o-teu-utilizador/calculator.git)
+
+   Aceder ao diretório:
+
+Bash
+cd calculator
+Instalar as dependências:
+
+Bash
+npm install
+Iniciar o servidor de desenvolvimento:
+
+Bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Visualizar a aplicação:
+Abre o teu navegador e acede a http://localhost:3000. A página será atualizada automaticamente conforme editas o código (via Turbopack).
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Estrutura do Projeto
+A organização principal do código segue a norma do Next.js App Router:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+src/app/ - Rotas, páginas e estilos globais.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+src/components/ - Componentes reutilizáveis da interface (inclui as pastas geradas pelo shadcn/ui).
 
-## Learn More
+src/lib/ - Ficheiros utilitários (ex: utils.ts para a gestão de classes do Tailwind).
 
-To learn more about Next.js, take a look at the following resources:
+tailwind.config.ts - Configuração dos temas e integração do plugin HeroUI.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Como Contribuir
+Contribuições são muito bem-vindas! Se quiseres melhorar este projeto, segue estes passos:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Faz um Fork do projeto
 
-## Deploy on Vercel
+Cria uma Branch para a tua modificação (git checkout -b feature/NovaFuncionalidade)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Faz o Commit das tuas alterações (git commit -m 'Adiciona NovaFuncionalidade')
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Faz o Push para a tua Branch (git push origin feature/NovaFuncionalidade)
+
+Abre um Pull Request no GitHub
+
+Licença
+Este projeto está sob a licença MIT. Consulta o ficheiro LICENSE para mais detalhes.
