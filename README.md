@@ -1,97 +1,131 @@
 <div align="center">
-  <h1>Calculator</h1>
+  <h1>Calculadora React + Next.js</h1>
   
-  <p>
-    Uma aplicação de calculadora moderna, responsiva e de alta performance.
-  </p>
+  Projeto de calculadora feito com **React** e **Next.js 15**, usando **TypeScript**, **Tailwind CSS** e componentes de interface do pacote `@heroui`.
 
   <p>
     <img src="https://img.shields.io/badge/Next.js-15.1-black?style=for-the-badge&logo=next.js" alt="Next.js" />
     <img src="https://img.shields.io/badge/React-19.0-blue?style=for-the-badge&logo=react" alt="React" />
     <img src="https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript" />
     <img src="https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white" alt="Tailwind CSS" />
+    <img src="https://img.shields.io/badge/Framer_Motion-0055FF?style=for-the-badge&logo=framer&logoColor=white" alt="Framer Motion" />
   </p>
+
+
 </div>
 
-<br/>
+## Visão geral
 
-## Sobre o Projeto
+A aplicação exibe uma calculadora funcional com entrada de expressão, teclado virtual e histórico de cálculos. A interface possui:
 
-Este projeto é uma calculadora desenvolvida com as mais recentes tecnologias do ecossistema front-end. O foco principal foi criar uma interface de utilizador (UI) limpa, com animações fluidas e uma estrutura de código escalável, utilizando o App Router do Next.js.
+- Campo de expressão visual e resultado atual
+- Botões para números, operações, ponto decimal, limpar e apagar
+- Alternância entre modo claro e escuro
+- Histórico de cálculos realizado
+- Modal de ajuda com atalhos de teclado
 
 ## Funcionalidades
 
-- **Interface Moderna e Acessível:** Construída com componentes do **HeroUI** e arquitetura do **shadcn/ui**.
-- **Animações Fluidas:** Interações e transições de estado geridas pelo **Framer Motion**.
-- **Design Responsivo:** Totalmente adaptável a qualquer ecrã (Mobile, Tablet, Desktop) graças ao **Tailwind CSS**.
-- **Dark/Light Mode:** Suporte nativo a temas utilizando variáveis CSS e as configurações do shadcn.
-- **Métricas e Performance:** Integração com **Vercel Speed Insights** para monitorização em tempo real.
+1. Cálculo de expressões matemáticas simples usando `eval`
+2. Histórico de cálculos exibido ao alternar para a aba de histórico
+3. Alternância de tema claro/escuro com persistência no `localStorage`
+4. Suporte a teclado:
+   - Digitação de números e operadores com teclado físico
+   - `TAB` para alternar entre calculadora e histórico
+   - `?` para abrir o modal de ajuda
+5. Layout responsivo e estilo baseado em Tailwind CSS
 
-## Tecnologias Utilizadas
+## Estrutura do projeto
 
-Abaixo está a lista das principais bibliotecas e *frameworks* que compõem este projeto:
+```
+calculator/
+├── src/
+│   ├── app/                # Layouts raiz, páginas e arquivos de roteamento (App Router)
+│   │   ├── globals.css     # Variáveis CSS e diretivas globais do Tailwind
+│   │   └── page.tsx        # Entry-point principal da interface da calculadora
+│   ├── components/         # Blocos de construção da interface e lógicas isoladas
+│   │   ├── ui/             # Componentes primitivos gerados pelo shadcn/ui
+│   │   └── ...             # Componentes específicos (Visor, Teclado, Histórico)
+│   ├── lib/                # Funções utilitárias compartilhadas
+│   │   └── utils.ts        # Utilitário 'cn' (mesclagem de classes via clsx + tailwind-merge)
+├── public/                 # Assets estáticos servidos diretamente (imagens, ícones)
+├── components.json         # Configuração arquitetural do shadcn/ui
+├── tailwind.config.ts      # Integrações de design (Plugins HeroUI, Cores, Animações)
+├── next.config.ts          # Configurações do compilador do Next.js
+└── package.json            # Gerenciamento de dependências e scripts do projeto
+```
 
-* [Next.js 15](https://nextjs.org/)
-* [React 19](https://react.dev/)
-* [TypeScript](https://www.typescriptlang.org/)
-* [Tailwind CSS](https://tailwindcss.com/)
-* [HeroUI](https://heroui.com/)
-* [shadcn/ui](https://ui.shadcn.com/)
-* [Framer Motion](https://www.framer.com/motion/)
-* [Lucide React](https://lucide.dev/) & [MUI Icons](https://mui.com/)
+## Dependências principais
 
-## Instalação e Execução
+- `next` 15.1.5
+- `react` 19
+- `typescript` 5
+- `tailwindcss` 3
+- `@heroui/button`, `@heroui/input`, `@heroui/modal`, `@heroui/switch`, `@heroui/tooltip`, `@heroui/kbd`
+- `@mui/material` e `@mui/icons-material`
+- `framer-motion`
 
-Para correr este projeto localmente na tua máquina, segue os passos abaixo.
+## Requisitos
 
-### Pré-requisitos
-* [Node.js](https://nodejs.org/en/) (versão 18+ recomendada)
-* `npm`, `yarn`, `pnpm` ou `bun`
+- Node.js 18 ou superior
+- npm 10 ou superior
 
-### Passos
+## Instalação
 
-1. **Clonar o repositório:**
-   ```bash
-   git clone [https://github.com/o-teu-utilizador/calculator.git](https://github.com/o-teu-utilizador/calculator.git)
+No diretório do projeto, execute:
 
-   Aceder ao diretório:
-
-Bash
-cd calculator
-Instalar as dependências:
-
-Bash
+```bash
 npm install
-Iniciar o servidor de desenvolvimento:
+```
 
-Bash
+## Execução em desenvolvimento
+
+Para iniciar o servidor de desenvolvimento:
+
+```bash
 npm run dev
-Visualizar a aplicação:
-Abre o teu navegador e acede a http://localhost:3000. A página será atualizada automaticamente conforme editas o código (via Turbopack).
+```
 
-Estrutura do Projeto
-A organização principal do código segue a norma do Next.js App Router:
+Depois disso, abra o navegador em:
 
-src/app/ - Rotas, páginas e estilos globais.
+```bash
+http://localhost:3000
+```
 
-src/components/ - Componentes reutilizáveis da interface (inclui as pastas geradas pelo shadcn/ui).
+## Build de produção
 
-src/lib/ - Ficheiros utilitários (ex: utils.ts para a gestão de classes do Tailwind).
+Para gerar a versão de produção:
 
-tailwind.config.ts - Configuração dos temas e integração do plugin HeroUI.
+```bash
+npm run build
+```
 
-Como Contribuir
-Contribuições são muito bem-vindas! Se quiseres melhorar este projeto, segue estes passos:
+Para iniciar o servidor de produção local:
 
-Faz um Fork do projeto
+```bash
+npm run start
+```
 
-Cria uma Branch para a tua modificação (git checkout -b feature/NovaFuncionalidade)
+## Como usar
 
-Faz o Commit das tuas alterações (git commit -m 'Adiciona NovaFuncionalidade')
+- Clique nos botões da calculadora para montar expressões
+- Use `=` para calcular
+- Use `AC` para limpar tudo, `C` para limpar apenas a expressão e `DEL` para apagar o último caractere
+- Clique no botão `?` para ver o modal de ajuda
+- Use o botão de alternância para mudar entre tema claro e escuro
+- Pressione `TAB` para alternar entre a visualização da calculadora e o histórico
 
-Faz o Push para a tua Branch (git push origin feature/NovaFuncionalidade)
+## Observações
 
-Abre um Pull Request no GitHub
+- O cálculo de expressões é feito com `eval`, portanto o comportamento segue as regras de avaliação do JavaScript
+- O histórico é mantido apenas durante a sessão atual de execução do aplicativo
+- O tema selecionado é salvo no `localStorage`
 
-Licença
-Este projeto está sob a licença MIT. Consulta o ficheiro LICENSE para mais detalhes.
+## Demonstração Visual
+<div align="center">
+<img width="1920" height="962" alt="image" src="https://github.com/user-attachments/assets/373a4141-f6f1-41a1-96e0-fc25f9de3cbf" />
+</div>
+
+<div align="center" >
+Construído com dedicação utilizando o poder do React e Next.js.
+</div>
